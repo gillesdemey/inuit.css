@@ -76,24 +76,24 @@
  *
  * Courtesy of @integralist: twitter.com/integralist/status/260484115315437569
  */
-@mixin keyframe ($animation-name){
-    @-webkit-keyframes $animation-name{
+@mixin keyframe($animation-name){
+    @-webkit-keyframes #{$animation-name}{
         @content;
     }
 
-    @-moz-keyframes $animation-name{
+    @-moz-keyframes #{$animation-name}{
         @content;
     }
 
-    @-ms-keyframes $animation-name{
+    @-ms-keyframes #{$animation-name}{
         @content;
     }
 
-    @-o-keyframes $animation-name{
+    @-o-keyframes #{$animation-name}{
         @content;
     }
 
-    @keyframes $animation-name{
+    @keyframes #{$animation-name}{
         @content;
     }
 }
@@ -111,6 +111,27 @@
     white-space:nowrap;
     overflow:hidden;
     text-overflow:ellipsis;
+}
+
+
+/**
+ * Media query for targetting retina devices, e.g.:
+ *
+   .foo{
+       background-image:url(1x.png);
+       @include retina(){
+           background-image:url(2x.png);
+       }
+   }
+ *
+ */
+@mixin retina{
+    @media print,
+           (-webkit-min-device-pixel-ratio:1.25),
+                (-o-min-device-pixel-ratio:5/4),
+           (min-resolution:120dpi){
+            @content;
+    }
 }
 
 
